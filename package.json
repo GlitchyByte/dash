@@ -1,0 +1,40 @@
+{
+  "name": "dash",
+  "version": "1.0.0",
+  "description": "Generic library for common utilities in most of my projects.",
+  "license": "Apache-2.0",
+  "author": "GlitchyByte",
+  "keywords": [
+    "utilities"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlitchyByte/dash.git"
+  },
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.3",
+    "@vitest/coverage-v8": "^3.2.4",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5",
+    "vitest": "^3.2.4"
+  }
+}
