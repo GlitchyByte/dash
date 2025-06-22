@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 export type TimeUnit = "ms" | "s" | "m" | "h" | "d" | "w"
-export type DurationSpec = number | `${number}${TimeUnit}`
+export type TimeDurationSpec = number | `${number}${TimeUnit}`
 
 const SECOND = 1000
 const MINUTE = 60 * SECOND
@@ -10,7 +10,7 @@ const HOUR= 60 * MINUTE
 const DAY= 24 * HOUR
 const WEEK= 7 * DAY
 
-function fromDurationSpec(duration: DurationSpec): number {
+function fromTimeDurationSpec(duration: TimeDurationSpec): number {
   if (typeof duration === "number") {
     return duration
   }
@@ -28,17 +28,15 @@ function fromDurationSpec(duration: DurationSpec): number {
 }
 
 /**
- * Resolves a duration spec and return the quantity of given units.
+ * Resolves a time duration spec and return the quantity of given units.
  *
  * @param duration Duration spec.
  * @param toUnit Unit to convert to. If omitted, it will resolve to ms.
  */
-export function resolveDuration(duration: DurationSpec, toUnit?: TimeUnit): number {
-  const ms = fromDurationSpec(duration)
-  if (!toUnit || (toUnit === "ms")) {
-    return ms
-  }
+export function resolveTimeDuration(duration: TimeDurationSpec, toUnit: TimeUnit = "ms"): number {
+  const ms = fromTimeDurationSpec(duration)
   switch (toUnit) {
+    case "ms": return ms
     case "s": return ms / SECOND
     case "m": return ms / MINUTE
     case "h": return ms / HOUR
@@ -48,13 +46,13 @@ export function resolveDuration(duration: DurationSpec, toUnit?: TimeUnit): numb
 }
 
 /**
- * Returns the duration as a string with units.
+ * Returns the time duration as a string with units.
  *
  * @param durationInMs Duration to convert.
  * @param toUnit Unit to convert to. If omitted, a full string with multiple units is returned.
  */
-export function durationToString(durationInMs: number, toUnit?: TimeUnit): string {
-  if (toUnit) {
+export function timeDurationToString(durationInMs: number, toUnit: TimeUnit | "full" = "full"): string {
+  if (toUnit !== "full") {
     switch (toUnit) {
       case "ms": return `${durationInMs}ms`
       case "s": return `${durationInMs / SECOND}s`
