@@ -4,3 +4,4 @@
 export * from "./lib/GMath"
 export * from "./lib/gutils"
 export * from "./lib/timeDuration"
+export * from "./lib/GByteBuffer"
