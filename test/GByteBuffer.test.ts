@@ -175,6 +175,5 @@ describe("GByteBuffer", () => {
       expect(reader.cursor).toBe(5)
       expect(reader.isAtEnd()).toBeTruthy()
     })
-
   })
 })

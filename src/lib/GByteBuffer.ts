@@ -18,7 +18,7 @@ export class GByteBufferWriter {
   private readonly _expansionRate: number
 
   /**
-   * Create a writer ready to receive data.
+   * Creates a writer ready to receive data.
    *
    * @param bytes Initial contents, or null to create an empty buffer.
    * @param expansionRate Rate at which this buffer will grow when more space is needed.
