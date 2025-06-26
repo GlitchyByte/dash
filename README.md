@@ -1,3 +1,5 @@
+# Still in dev!!!! Don't use yet until there is a proper npm release.
+
 # Dash
 
 [![version](https://img.shields.io/badge/version-1.0.0-dodgerblue)](https://github.com/GlitchyByte/dash/releases/tag/v1.0.0)
