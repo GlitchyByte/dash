@@ -1,7 +1,7 @@
 // Copyright 2024-2025 GlitchyByte
 // SPDX-License-Identifier: Apache-2.0
 
-import { describe, it, expect } from "vitest"
+import { describe, expect, it } from "vitest"
 import { bytesToString, numberToBinaryString, numberToHexString, separatedString, stringToBytes } from "../src"
 
 describe("gutils", () => {

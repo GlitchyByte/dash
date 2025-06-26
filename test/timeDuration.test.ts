@@ -1,8 +1,8 @@
 // Copyright 2025 GlitchyByte
 // SPDX-License-Identifier: Apache-2.0
 
-import { describe, it, expect } from "vitest"
-import { timeDurationToString, resolveTimeDuration } from "../src"
+import { describe, expect, it } from "vitest"
+import { resolveTimeDuration, timeDurationToString } from "../src"
 
 describe("duration", () => {
   describe("resolveDuration default ms", () => {
