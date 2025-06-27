@@ -4,8 +4,8 @@
 
 Generic library for common utilities in most of my projects.
 
-Documentation is here.
+Documentation is at [glitchybyte.github.io/dash/](https://glitchybyte.github.io/dash/)
 
 Overall, there are a byte buffer writer and reader classes,
-but buffer writer and reader classes, some quick math functions,
+a bit buffer writer and reader classes, some quick math functions,
 time duration conversion functions, and other miscellaneous functions.
