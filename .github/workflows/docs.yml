@@ -1,0 +1,37 @@
+name: dash-docs
+run-name: Publishing Dash Pages
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - "src/**"
+jobs:
+  test_and_docs:
+    permissions:
+      contents: read  # Repository.
+      id-token: write # Pages.
+      pages: write    # Pages.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup
+        run: npm install
+
+      - name: Test
+        run: npm run test
+
+      - name: Docs
+        run: npm run docs
+
+      - name: Prepare Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy Pages
+        uses: actions/deploy-pages@v4

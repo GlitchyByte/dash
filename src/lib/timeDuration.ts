@@ -30,6 +30,13 @@ function fromTimeDurationSpec(duration: TimeDurationSpec): number {
 /**
  * Resolves a time duration spec and return the quantity of given units.
  *
+ * Examples:
+ * ```ts
+ * const hour = resolveTimeDuration("60m", "h") // 1
+ * const seconds = resolveTimeDuration("1.5m", "s") // 90
+ * const millis = resolveTimeDuration("20s") // 20_000
+ * ```
+ *
  * @param duration Duration spec.
  * @param toUnit Unit to convert to. If omitted, it will resolve to ms.
  */
@@ -47,6 +54,11 @@ export function resolveTimeDuration(duration: TimeDurationSpec, toUnit: TimeUnit
 
 /**
  * Returns the time duration as a string with units.
+ *
+ * Example:
+ * ```ts
+ * const days = timeDurationToString(0.5 * 24 * 60 * 60 * 1_000, "d") // 0.5
+ * ```
  *
  * @param durationInMs Duration to convert.
  * @param toUnit Unit to convert to. If omitted, a full string with multiple units is returned.

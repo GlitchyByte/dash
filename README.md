@@ -1,15 +1,11 @@
-# Still in dev!!!! Don't use yet until there is a proper npm release.
-
 # Dash
 
 [![version](https://img.shields.io/badge/version-1.0.0-dodgerblue)](https://github.com/GlitchyByte/dash/releases/tag/v1.0.0)
 
 Generic library for common utilities in most of my projects.
 
-## Available functions and classes
+Documentation is here.
 
-```ts
-stringToBytes(str)
-```
-
-blah blah
+Overall, there are a byte buffer writer and reader classes,
+but buffer writer and reader classes, some quick math functions,
+time duration conversion functions, and other miscellaneous functions.

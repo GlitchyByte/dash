@@ -72,6 +72,9 @@ export function numberToBinaryString(value: number, minLength = 1): string {
  * Convenience function to separate groups of characters and insert a separator string between them.
  *
  * For example, to separate nibbles or bytes on a binary string, or bytes on a hex string.
+ * ```ts
+ * const binStr = separatedString("10011001", 4) // "1001 1001"
+ * ```
  *
  * @param str String to insert separators.
  * @param every Count of characters to insert separator in between.

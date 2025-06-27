@@ -10,3 +10,6 @@
 
 # Dist output.
 /dist/
+
+# Docs.
+/docs/
