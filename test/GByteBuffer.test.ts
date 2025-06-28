@@ -90,6 +90,15 @@ describe("GByteBuffer", () => {
       expect(buffer.size).toBe(size + 4)
     })
 
+    it("writeBytes", () => {
+      const buffer = new GByteBufferWriter()
+      buffer.writeUInt32(0x01020304)
+      const bytes = new Uint8Array([0x05, 0x06, 0x07, 0x08])
+      buffer.writeBytes(bytes)
+      buffer.writeUInt8(0xff)
+      expect(buffer.size).toBe(9)
+    })
+
     it("extractBytes", () => {
       const bytes = new Uint8Array(5)
       const buffer = new GByteBufferWriter(bytes.buffer)
@@ -158,6 +167,24 @@ describe("GByteBuffer", () => {
       reader.readUInt8() // Skip a byte.
       const value = reader.readFloat32()
       expect(value).toBe(1.5)
+    })
+
+    it("readBytes", () => {
+      const writer = new GByteBufferWriter()
+      writer.writeUInt32(0x01020304)
+      const bytes = new Uint8Array([0x05, 0x06, 0x07, 0x08])
+      writer.writeBytes(bytes)
+      const extractedBytes = writer.extractBytes()
+      const reader = new GByteBufferReader(extractedBytes.buffer)
+      reader.readUInt8() // Skip a byte.
+      const readBytes = reader.readBytes(5)
+      expect(readBytes[0]).toBe(0x03)
+      expect(readBytes[1]).toBe(0x02)
+      expect(readBytes[2]).toBe(0x01)
+      expect(readBytes[3]).toBe(0x05)
+      expect(readBytes[4]).toBe(0x06)
+      const value = reader.readUInt8()
+      expect(value).toBe(0x07)
     })
 
     it("cursor to end", () => {

@@ -129,6 +129,19 @@ export class GByteBufferWriter {
     this._view.setFloat32(this._size, value, true)
     this._size += 4
   }
+
+  /**
+   * Writes a byte array to the buffer.
+   *
+   * @param bytes Byte array.
+   */
+  public writeBytes(bytes: Uint8Array): void {
+    const byteCount = bytes.byteLength
+    this._ensureAddedCapacity(byteCount)
+    const buffer = new Uint8Array(this._bytes, this._size, byteCount)
+    buffer.set(bytes)
+    this._size += byteCount
+  }
 }
 
 /**
@@ -215,6 +228,17 @@ export class GByteBufferReader {
   public readFloat32(): number {
     const value = this._view.getFloat32(this._cursor, true)
     this._cursor += 4
+    return value
+  }
+
+  /**
+   * Reads count bytes from the buffer and advances the cursor.
+   *
+   * @param count Count of bytes to read.
+   */
+  public readBytes(count: number): Uint8Array {
+    const value = new Uint8Array(this._bytes, this._cursor, count)
+    this._cursor += count
     return value
   }
 
