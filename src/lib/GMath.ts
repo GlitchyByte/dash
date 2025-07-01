@@ -85,6 +85,25 @@ export class GMath {
   }
 
   /**
+   * Returns a random index picked according to its weight.
+   *
+   * @param weights An array of weights.
+   */
+  public static randomWeightIndex(weights: number[]): number {
+    const total = weights.reduce((previousValue, currentValue) => previousValue + currentValue)
+    const r = GMath.random(total)
+    let acc = 0
+    for (let i = 0; i < weights.length; ++i) {
+      acc += weights[i]
+      if (r < acc) {
+        return i
+      }
+    }
+    // Floating point errors go to the last item.
+    return weights[weights.length - 1]
+  }
+
+  /**
    * Returns the calculated average of adding one more value to a previous average.
    *
    * @param count Item count including the new one.
