@@ -1,6 +1,6 @@
 # Dash
 
-[![version](https://img.shields.io/badge/version-1.2.0-dodgerblue)](https://github.com/GlitchyByte/dash/releases/tag/v1.2.0)
+[![version](https://img.shields.io/badge/version-1.2.1-dodgerblue)](https://github.com/GlitchyByte/dash/releases/tag/v1.2.1)
 
 Library for general common utilities in most of my projects.
 
