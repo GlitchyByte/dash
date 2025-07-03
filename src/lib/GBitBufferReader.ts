@@ -64,7 +64,7 @@ export class GBitBufferReader {
       const bitsInPosition = value << offset
       result |= bitsInPosition
     }
-    return result
+    return result >>> 0
   }
 
   /**
