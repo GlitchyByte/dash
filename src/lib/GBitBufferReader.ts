@@ -11,7 +11,7 @@ export class GBitBufferReader {
 
   private readonly _bufferReader: GByteBufferReader
   private _currentByte = 0
-  private _usedBits = 8
+  private _usedBits: number | null = null
 
   /**
    * Creates a reader from the given data.
@@ -30,14 +30,21 @@ export class GBitBufferReader {
   }
 
   /**
+   * Bit reader head position.
+   */
+  public get position(): number {
+    return this._usedBits === null ? 0 : (this._bufferReader.cursor * 8) - 8 + this._usedBits
+  }
+
+  /**
    * Returns true if we have read all bits.
    */
   public isAtEnd(): boolean {
-    return this._bufferReader.isAtEnd() && (this._usedBits >= 8)
+    return this._bufferReader.isAtEnd() && ((this._usedBits ?? 0) >= 8)
   }
 
   private _readBits(bitCount: number): [number, number] {
-    if (this._usedBits >= 8) {
+    if ((this._usedBits === null) || (this._usedBits >= 8)) {
       this._currentByte = this._bufferReader.readUInt8()
       this._usedBits = 0
     }

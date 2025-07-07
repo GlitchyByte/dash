@@ -10,6 +10,7 @@ describe("GBitBufferWriter", () => {
     const bytes = new Uint8Array(size)
     const buffer = new GBitBufferWriter(bytes.buffer)
     expect(buffer.size).toBe(size)
+    expect(buffer.bitCount).toBe(size * 8)
   })
 
   it("write < 8 bits", () => {
@@ -18,6 +19,7 @@ describe("GBitBufferWriter", () => {
     const buffer = new GBitBufferWriter(bytes.buffer)
     buffer.write(2, 0x01)
     expect(buffer.size).toBe(size + 1)
+    expect(buffer.bitCount).toBe((size * 8) + 2)
   })
 
   it("write 8 bits", () => {
@@ -26,6 +28,7 @@ describe("GBitBufferWriter", () => {
     const buffer = new GBitBufferWriter(bytes.buffer)
     buffer.write(8, 0x81)
     expect(buffer.size).toBe(size + 1)
+    expect(buffer.bitCount).toBe((size * 8) + 8)
   })
 
   it("write > 8 bits", () => {
@@ -34,6 +37,7 @@ describe("GBitBufferWriter", () => {
     const buffer = new GBitBufferWriter(bytes.buffer)
     buffer.write(12, 0x0401)
     expect(buffer.size).toBe(size + 2)
+    expect(buffer.bitCount).toBe((size * 8) + 12)
   })
 
   it("extractBytes exact", () => {

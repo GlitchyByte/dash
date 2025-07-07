@@ -20,12 +20,16 @@ describe("GBitBufferReader", () => {
     const reader = new GBitBufferReader(extractedBytes.buffer)
     let value = reader.read(8)
     expect(value).toBe(0x01)
+    expect(reader.position).toBe(8)
     value = reader.read(8)
     expect(value).toBe(0x02)
+    expect(reader.position).toBe(16)
     value = reader.read(7)
     expect(value).toBe(0x01)
+    expect(reader.position).toBe(23)
     value = reader.read(9)
     expect(value).toBe(0x104)
+    expect(reader.position).toBe(32)
   })
 
   it("isAtEnd", () => {

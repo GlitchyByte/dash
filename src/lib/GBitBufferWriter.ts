@@ -32,6 +32,13 @@ export class GBitBufferWriter {
     return this._bufferWriter.size + (this._currentBits === 0 ? 0 : 1)
   }
 
+  /**
+   * Size of buffer, in bits.
+   */
+  public get bitCount(): number {
+    return (this._bufferWriter.size * 8) + this._currentBits
+  }
+
   private _flushByte(): void {
     this._bufferWriter.writeUInt8(this._currentByte)
     this._currentByte = 0
