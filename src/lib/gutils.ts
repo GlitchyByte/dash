@@ -69,6 +69,56 @@ export function numberToBinaryString(value: number, minLength = 1): string {
 }
 
 /**
+ * Converts number value into a baseN string.
+ *
+ * @param value Value to convert
+ * @param chars BaseN digits.
+ */
+export function numberToBaseNString(value: number, chars: string): string {
+  if (value < 0) {
+    throw new Error("Number cannot be negative")
+  }
+  if (chars.length < 2) {
+    throw new Error("chars must be at least 2 characters")
+  }
+  if (value === 0) {
+    return chars[0]
+  }
+  const base = chars.length
+  let str = ""
+  let remainder = value
+  while (remainder > 0) {
+    str = chars[remainder % base] + str
+    remainder = Math.floor(remainder / base)
+  }
+  return str
+}
+
+/**
+ * Converts baseN string to a number.
+ *
+ * @param str BaseN string to convert.
+ * @param chars BaseN digits.
+ */
+export function baseNStringToNumber(str: string, chars: string): number {
+  const base = chars.length
+  if (base < 2) {
+    throw new Error("String cannot be empty")
+  }
+  const length = str.length
+  let result = 0
+  for (let i = 0; i < length; ++i) {
+    const char = str[i]
+    const value = chars.indexOf(char)
+    if (value === -1) {
+      throw new Error(`Invalid character: "${char}"`)
+    }
+    result = (result * base) + value
+  }
+  return result
+}
+
+/**
  * Convenience function to separate groups of characters and insert a separator string between them.
  *
  * For example, to separate nibbles or bytes on a binary string, or bytes on a hex string.
